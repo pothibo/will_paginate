@@ -101,6 +101,7 @@ module WillPaginate
       when Class then options[:renderer].new
       else options[:renderer]
       end
+
       # render HTML for pagination
       renderer.prepare collection, options, self
       renderer.to_html
@@ -184,7 +185,7 @@ module WillPaginate
       # previous/next buttons
       links.unshift page_link_or_span(@collection.previous_page, 'disabled prev_page', @options[:previous_label])
       links.push    page_link_or_span(@collection.next_page,     'disabled next_page', @options[:next_label])
-      
+
       html = links.join(@options[:separator])
       html = html.html_safe if html.respond_to? :html_safe
       @options[:container] ? @template.content_tag(:div, html, html_attributes) : html
